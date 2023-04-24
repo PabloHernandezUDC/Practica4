@@ -1,0 +1,13 @@
+nombre;duracion;participantes;precio
+yoga;90;12;20.00
+paintball;240;10;25.00
+siesta sin alarma;360;1;0.00
+cine;120;25;7.50
+bicicleta;150;8;18.00
+karaoke;120;30;12.00
+esquí;180;5;30.00
+fútbol;90;20;10.00
+natación;120;15;12.50
+senderismo;120;20;15.00
+escalada;150;10;22.00
+padel;90;6;16.00
