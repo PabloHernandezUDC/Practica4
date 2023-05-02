@@ -30,6 +30,20 @@ def create_activity_tree(path):
             
     return tree
 
+def activity_sum(tree1, tree2):
+    '''
+    Para actividades con mismo nombre, se mantendrá aquella con menor 
+    coste, teniendo en cuenta el precio, nº de participantes y duración.
+    '''
+    tree3 = AVL()
+    
+        
+    return tree3
+
+def min_shared_offer(tree1, tree2):
+    
+    pass
+
 if __name__ == "__main__":
     tree_A = create_activity_tree('actividadesA.txt')
     tree_B = create_activity_tree('actividadesB.txt')
