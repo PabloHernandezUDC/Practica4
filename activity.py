@@ -50,17 +50,3 @@ class Activity():
         '''
         '''
         self._cost = input_cost
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-              
-    pass

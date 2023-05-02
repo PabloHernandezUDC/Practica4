@@ -14,7 +14,7 @@ def create_activity_from_line(params):
     
     return Activity(name, duration, participants, cost)
 
-def create_element(path):
+def create_activity_tree(path):
     '''
     '''
     with open(path) as f:
@@ -23,13 +23,9 @@ def create_element(path):
             current_activity = create_activity_from_line(elemento.split(';'))
             if current_activity.get_name().lower() != 'nombre':
                 tree[current_activity.get_name().lower()] = current_activity
-        
-        for leaf in tree:
-            print(leaf, tree[leaf].get_cost())
-        
             
-    return None
+    return tree
 
 if __name__ == "__main__":
-    create_element('actividadesB.txt')
+    create_activity_tree('actividadesA.txt')
     pass
