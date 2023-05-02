@@ -19,26 +19,6 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from collections.abc import MutableMapping
-from abc import ABC
-
-class MapBase(MutableMapping, ABC):
-  """Our own abstract base class that includes a nonpublic _Item class."""
-
-  #------------------------------- nested _Item class -------------------------------
-  class _Item:
-    """Lightweight composite to store key-value pairs as map items."""
-    __slots__ = '_key', '_value'
-
-    def __init__(self, k, v):
-      self._key = k
-      self._value = v
-
-    def __eq__(self, other):               
-      return self._key == other._key   # compare items based on their keys
-
-    def __ne__(self, other):
-      return not (self == other)       # opposite of __eq__
-
-    def __lt__(self, other):               
-      return self._key < other._key    # compare items based on their keys
+class Empty(Exception):
+  """Error attempting to access an element from an empty container."""
+  pass

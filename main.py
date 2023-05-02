@@ -20,10 +20,16 @@ def create_element(path):
     with open(path) as f:
         tree = AVL()
         for elemento in f.readlines():
-           a = create_activity_from_line(elemento.split(';'))
+            current_activity = create_activity_from_line(elemento.split(';'))
+            if current_activity.get_name().lower() != 'nombre':
+                tree[current_activity.get_name().lower()] = current_activity
+        
+        for leaf in tree:
+            print(leaf, tree[leaf].get_cost())
+        
             
     return None
 
 if __name__ == "__main__":
-    create_element('actividadesA.txt')
+    create_element('actividadesB.txt')
     pass
