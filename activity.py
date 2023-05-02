@@ -7,9 +7,18 @@ class Activity():
         '''
         '''
         self._name = name
-        self._duration = duration
-        self._participants = participants
-        self._cost = cost
+        try:
+            self._duration = float(duration)
+        except ValueError:
+            self._duration = duration
+        try:
+            self._participants = float(participants)
+        except ValueError:
+            self._participants = participants
+        try:
+            self._cost = float(cost)
+        except ValueError:
+            self._cost = cost
     
     def get_name(self):
         '''
