@@ -37,7 +37,8 @@ def activity_sum(tree1, tree2):
     for leaf in tree1:
         result_tree[leaf] = tree1[leaf]
     for leaf in tree2:
-        result_tree[leaf] = tree2[leaf]
+        if leaf not in tree1 or tree2[leaf] < tree1[leaf]:
+            result_tree[leaf] = tree2[leaf]
         
     return result_tree
 
