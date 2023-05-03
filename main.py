@@ -75,4 +75,4 @@ if __name__ == "__main__":
     print('\nFin de la ejecución.\n')
     
     end_time = time.perf_counter_ns()
-    print(f"El tiempo de ejecución ha sido de {(end_time - start_time)/(10**6)} ms.\n")
+    print(f"Tiempo de ejecución {(end_time - start_time)/(10**6)} ms.\n")
