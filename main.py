@@ -48,7 +48,7 @@ def min_shared_offer(tree1, tree2):
     '''
     '''
     result_tree = AVL()
-    print('Procediendo a encontrar la oferta mínima común...')
+    print('\nProcediendo a encontrar la oferta mínima común...')
 
     for leaf in tree1:
         if leaf in tree2:            
