@@ -14,7 +14,6 @@ def print_indented_tree(T, p, d):
 
 def create_activity_from_line(params):
     '''
-    TODO: arreglar pa q furrule si es todo strings.
     '''
     name, duration, participants, cost = params
     return Activity(name, duration, participants, cost)
@@ -24,7 +23,7 @@ def create_activity_tree(path):
     '''
     with open(path) as f:
         tree = AVL()
-        for elemento in f.readlines()[1:]:
+        for elemento in f.readlines()[1:]: # we skip the first one since its just a header line
             current_activity = create_activity_from_line(elemento.split(';'))
             tree[current_activity.get_name().lower()] = current_activity
             
@@ -32,21 +31,43 @@ def create_activity_tree(path):
 
 def activity_sum(tree1, tree2):
     '''
-    Para actividades con mismo nombre, se mantendrá aquella con menor 
-    coste, teniendo en cuenta el precio, nº de participantes y duración.
     '''
-    tree3 = AVL()
+    result_tree = AVL()
     
+    for leaf in tree1:
+        result_tree[leaf] = tree1[leaf]
+    for leaf in tree2:
+        result_tree[leaf] = tree2[leaf]
         
-    return tree3
+    return result_tree
 
 def min_shared_offer(tree1, tree2):
-    
-    pass
+    '''
+    '''
+    result_tree = AVL()
+
+    for leaf in tree1:
+        if leaf in tree2:            
+            if tree1[leaf] < tree2[leaf]:
+                result_tree[leaf] = tree1[leaf]
+            else:
+                result_tree[leaf] = tree2[leaf]
+
+    return result_tree
 
 if __name__ == "__main__":
+    print('\nIniciando el programa...')
     tree_A = create_activity_tree('actividadesA.txt')
     tree_B = create_activity_tree('actividadesB.txt')
+    print('Los árboles han sido creados.\n')
     
-    print_indented_tree(tree_A, tree_A.root(), 0)
-    print_indented_tree(tree_B, tree_B.root(), 0)
+    print('Procediendo a crear la suma de actividades...')
+    sum_tree = activity_sum(tree_A, tree_B)
+    print('La suma de actividades ha sido creada. Este es el árbol resultante:')
+    print_indented_tree(sum_tree, sum_tree.root(), 0)
+    
+    print('\nProcediendo a encontrar la oferta mínima común...')
+    common_tree = min_shared_offer(tree_A, tree_B)
+    print('Ya hemos encontrado la oferta mínima común. Este es el árbol resultante:')
+    print_indented_tree(common_tree, common_tree.root(), 0)
+    print('\nFin de la ejecución.\n')

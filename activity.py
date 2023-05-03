@@ -20,6 +20,16 @@ class Activity():
         except ValueError:
             self._cost = cost
     
+    def __lt__(self, other):
+        '''
+        '''
+        return self.get_total_needed_resources() < other.get_total_needed_resources()
+    
+    def get_total_needed_resources(self):
+        '''
+        '''
+        return self._cost/self._participants/self._duration
+            
     def get_name(self):
         '''
         '''
