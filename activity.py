@@ -28,7 +28,7 @@ class Activity():
     def get_total_needed_resources(self):
         '''
         '''
-        return self._cost/self._participants/self._duration
+        return self._cost/self._participants/(self._duration/60)
             
     def get_name(self):
         '''

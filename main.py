@@ -3,15 +3,15 @@ from activity import Activity
 from avl_tree import AVL
 import time
 
-def print_indented_tree(T, p, d):
+def print_indented_activity_tree(T, p, d):
     '''
-    Taken from avl_tree.
+    Taken from avl_tree., slightly modifed
     This function lets us print any tree with indents representing hierarchy.
     '''
     if p is not None:
-        print(2*d*' ' + "(" + str(p.key()) + "," + str(p.value()) + ")") 
-        print_indented_tree(T, T.left(p), d+1)
-        print_indented_tree(T, T.right(p), d+1)
+        print(4*d*' ' + "(" + str(p.key()) + ",", f'coste: {round(p.value().get_total_needed_resources(), 2)}' + ")") 
+        print_indented_activity_tree(T, T.left(p), d+1)
+        print_indented_activity_tree(T, T.right(p), d+1)
 
 def create_activity_from_line(params):
     '''
@@ -35,11 +35,11 @@ def activity_sum(tree1, tree2):
     result_tree = AVL()
     print('Procediendo a crear la suma de actividades...')
 
-    for leaf in tree1:
-        result_tree[leaf] = tree1[leaf]
-    for leaf in tree2:
-        if leaf not in tree1 or tree2[leaf] < tree1[leaf]:
-            result_tree[leaf] = tree2[leaf]
+    for i in tree1:
+        result_tree[i] = tree1[i]
+    for i in tree2:
+        if i not in tree1 or tree2[i] < tree1[i]:
+            result_tree[i] = tree2[i]
     
     print('La suma de actividades ha sido creada.\n')
     return result_tree
@@ -50,29 +50,25 @@ def min_shared_offer(tree1, tree2):
     result_tree = AVL()
     print('\nProcediendo a encontrar la oferta mínima común...')
 
-    for leaf in tree1:
-        if leaf in tree2:            
-            if tree1[leaf] < tree2[leaf]:
-                result_tree[leaf] = tree1[leaf]
+    for i in tree1:
+        if i in tree2:            
+            if tree1[i] < tree2[i]:
+                result_tree[i] = tree1[i]
             else:
-                result_tree[leaf] = tree2[leaf]
+                result_tree[i] = tree2[i]
     
     print('Ya hemos encontrado la oferta mínima común.')
     return result_tree
 
 if __name__ == "__main__":
-    start_time = time.perf_counter_ns()
     print('\nIniciando el programa...')
     tree_A = create_activity_tree('actividadesA.txt')
     tree_B = create_activity_tree('actividadesB.txt')
     print('Los árboles han sido creados.\n')
     
-    sum_tree = activity_sum(tree_A, tree_B)
-    print_indented_tree(sum_tree, sum_tree.root(), 0)
+    tree_C = activity_sum(tree_A, tree_B)
+    print_indented_activity_tree(tree_C, tree_C.root(), 0)
     
-    common_tree = min_shared_offer(tree_A, tree_B)
-    print_indented_tree(common_tree, common_tree.root(), 0)
+    tree_C = min_shared_offer(tree_A, tree_B)
+    print_indented_activity_tree(tree_C, tree_C.root(), 0)
     print('\nFin de la ejecución.\n')
-    
-    end_time = time.perf_counter_ns()
-    print(f"Tiempo de ejecución {(end_time - start_time)/(10**6)} ms.\n")
