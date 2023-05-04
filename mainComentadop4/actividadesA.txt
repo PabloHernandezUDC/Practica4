@@ -1,0 +1,10 @@
+nombre;duracion;participantes;precio
+yoga;60;10;15.00
+cine;120;30;8.00
+senderismo;180;15;20.00
+gimnasia;90;20;12.50
+karaoke;120;25;10.00
+pintura;150;10;25.00
+combate con churros de gomaespuma;5;2;1.00
+teatro;90;15;15.00
+fotografía;180;12;18.00
