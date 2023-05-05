@@ -1,7 +1,6 @@
 # Pablo Hernandez Martinez, pablo.hernandez.martinez@udc.es - Marcelo Ferreiro Sánchez, marcelo.fsanchez@udc.es
 from activity import Activity
 from avl_tree import AVL
-import time
 
 def print_indented_activity_tree(T, p, d):
     '''
