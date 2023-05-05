@@ -40,11 +40,11 @@ class Activity():
         '''
         self._name = name
         try:
-            self._duration = float(duration)
+            self._duration = int(duration)
         except ValueError:
             self._duration = duration
         try:
-            self._participants = float(participants)
+            self._participants = int(participants)
         except ValueError:
             self._participants = participants
         try:
@@ -62,7 +62,7 @@ class Activity():
 
         Returns
         ----------
-            bool: True if this activity requires fewer resources than the other, false otherwise.
+            bool: True if this activity requires strictly fewer resources than the other, false otherwise.
         '''
         return self.get_total_needed_resources() < other.get_total_needed_resources()
     
