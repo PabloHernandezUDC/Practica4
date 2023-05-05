@@ -60,7 +60,6 @@ def activity_sum(tree1, tree2):
     ----------
         result_tree: An AVL tree of activity nodes containing the sum of the two AVL trees.
     '''
-    print('Procediendo a crear la suma de actividades...')
 
     result_tree = AVL()
     result_tree.update(tree1)
@@ -69,7 +68,6 @@ def activity_sum(tree1, tree2):
         if i not in result_tree or tree2[i] < result_tree[i]:
             result_tree[i] = tree2[i]
     
-    print('La suma de actividades ha sido creada.\n')
     return result_tree
 
 def min_shared_offer(tree1, tree2):
@@ -84,7 +82,6 @@ def min_shared_offer(tree1, tree2):
        result_tree: An AVL tree of activity nodes containing the minimum shared offer of the two AVL trees.
     '''
     result_tree = AVL()
-    print('\nProcediendo a encontrar la oferta mínima común...')
 
     for i in tree1:
         if i in tree2:            
@@ -93,21 +90,20 @@ def min_shared_offer(tree1, tree2):
             else:
                 result_tree[i] = tree2[i]
     
-    print('Ya hemos encontrado la oferta mínima común.')
     return result_tree
 
 if __name__ == "__main__":
     start_time = time.perf_counter_ns() # starting the timer to test performance at the end
-    print('\nIniciando el programa...')
+    
     tree_A = create_activity_tree('actividadesA.txt')
     tree_B = create_activity_tree('actividadesB.txt')
-    print('Los árboles han sido creados.\n')
-    
     tree_C = activity_sum(tree_A, tree_B)
-    #print_indented_activity_tree(tree_C, tree_C.root(), 0)
+    tree_D = min_shared_offer(tree_A, tree_B)
+    end_time = time.perf_counter_ns()
+     
+    print('\nSuma de actividades:')
+    print_indented_activity_tree(tree_C, tree_C.root(), 0)
+    print('Oferta mínima común:')
+    print_indented_activity_tree(tree_D, tree_D.root(), 0)
     
-    tree_C = min_shared_offer(tree_A, tree_B)
-    #print_indented_activity_tree(tree_C, tree_C.root(), 0)
-    
-    end_time = time.perf_counter_ns() # getting the final time
-    print(f"\nTiempo de ejecución: {(end_time - start_time) / (10**6)}ms.\n") # printing it in miliseconds
+    print(f'Tiempo de ejecución: {(end_time - start_time) / (10**6)}ms.\n')
